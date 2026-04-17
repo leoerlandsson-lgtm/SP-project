@@ -27,5 +27,24 @@
             HP = hp;
             Attack = attack;
         }
+
+
+        public void AttackTarget(Pokemon target)
+        {
+            Console.WriteLine($"{this.Name} attackerar {target.Name}!");
+            target.HP -= this.Attack;
+
+            
+            if (target.HP < 0) target.HP = 0;
+
+            Console.WriteLine($"{target.Name} tog {this.Attack} skada och har nu {target.HP} HP kvar.");
+        }
+
+
+
+
+
+
+
     }
 }
