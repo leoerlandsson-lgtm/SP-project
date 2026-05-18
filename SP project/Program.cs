@@ -15,32 +15,32 @@ namespace SP_project
             Console.WriteLine("Tryck på ENTER för att gå vidare i striden...\n");
             Console.ReadLine();
 
-            // Stridssloop: Fortsätt så länge BÅDA har HP kvar (över 0)
+            
             while (pikachu.HP > 0 && bulbasaur.HP > 0)
             {
-                // 1. Pikachu attackerar först
+               
                 pikachu.AttackTarget(bulbasaur);
 
-                // Kontrollera om Bulbasaur svimmade av attacken
+                
                 if (bulbasaur.HP <= 0)
                 {
                     Console.WriteLine($"\n{bulbasaur.Name} svimmade! {pikachu.Name} vann striden!");
-                    break; // Avbryt loopen direkt, spelet är slut
+                    break; 
                 }
 
-                Console.ReadLine(); // Vänta på att spelaren trycker Enter
+                Console.ReadLine(); 
 
-                // 2. Bulbasaur kontrar om den fortfarande lever
+                
                 bulbasaur.AttackTarget(pikachu);
 
-                // Kontrollera om Pikachu svimmade av kontringen
+                
                 if (pikachu.HP <= 0)
                 {
                     Console.WriteLine($"\n{pikachu.Name} svimmade! {bulbasaur.Name} vann striden!");
-                    break; // Avbryt loopen
+                    break; 
                 }
 
-                Console.ReadLine(); // Vänta på Enter innan nästa runda börjar
+                Console.ReadLine(); 
                 Console.WriteLine("--- Nästa runda ---");
             }
 
