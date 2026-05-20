@@ -6,7 +6,7 @@ namespace SP_project
     {
         static void Main(string[] args)
         {
-            // Skapa två Pokémon att testa systemet med
+            
             Pokemon pikachu = new Pokemon("Pikachu", 35, 10);
             Pokemon bulbasaur = new Pokemon("Bulbasaur", 45, 8);
 
@@ -45,11 +45,11 @@ namespace SP_project
             }
 
             Console.WriteLine("\nStriden är slut! Tack för att du spelade.");
-            Console.ReadLine(); // Håller kvar konsolfönstret i slutet
+            Console.ReadLine(); 
         }
     }
 
-    // Din Pokémon-klass
+    
     public class Pokemon
     {
         public string Name { get; set; }
@@ -65,10 +65,16 @@ namespace SP_project
 
         public void AttackTarget(Pokemon target)
         {
-            Console.WriteLine($"{this.Name} attackerar {target.Name}!");
+            Console.WriteLine($"{this.Name} attackerar" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $" {target.Name}!");
             target.HP -= this.Attack;
 
-            // Om HP hamnar under 0, sätt det till 0 så det ser snyggare ut i texten
+            
             if (target.HP < 0) target.HP = 0;
 
             Console.WriteLine($"{target.Name} tog {this.Attack} skada och har nu {target.HP} HP kvar.");
