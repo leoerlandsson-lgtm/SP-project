@@ -6,7 +6,7 @@ namespace SP_project
     {
         static void Main(string[] args)
         {
-            // Vi skapar två enkla Tuples: (Namn, HP, MaxHP, Attack)
+           
             var pikachu = ("Pikachu", 40, 40, 10);
             var bulbasaur = ("Bulbasaur", 45, 45, 8);
 
@@ -15,7 +15,7 @@ namespace SP_project
 
             while (pikachu.Item2 > 0 && bulbasaur.Item2 > 0)
             {
-                // --- SPELARENS TUR ---
+             
                 Console.WriteLine($"--- {pikachu.Item1}s tur ({pikachu.Item2} HP kvar) ---");
                 Console.WriteLine("Vad vill du göra?");
                 Console.WriteLine("1. Attackera");
@@ -27,13 +27,13 @@ namespace SP_project
 
                 if (val == "1")
                 {
-                    // Bulbasaur tar skada: Minska HP (Item2) med Pikachus attack (Item4)
+                    
                     bulbasaur.Item2 -= pikachu.Item4;
                     Console.WriteLine($"{pikachu.Item1} attackerar och gör {pikachu.Item4} skada!");
                 }
                 else if (val == "2")
                 {
-                    // Pikachu helas, men får inte gå över MaxHP (Item3)
+                    
                     pikachu.Item2 += 15;
                     if (pikachu.Item2 > pikachu.Item3) pikachu.Item2 = pikachu.Item3;
                     Console.WriteLine($"{pikachu.Item1} använde en Heal Potion!");
@@ -49,10 +49,10 @@ namespace SP_project
                     break;
                 }
 
-                // --- DATORNS TUR ---
+               
                 Console.WriteLine($"\n--- {bulbasaur.Item1}s tur ({bulbasaur.Item2} HP kvar) ---");
 
-                // Pikachu tar skada från Bulbasaurs attack
+                
                 pikachu.Item2 -= bulbasaur.Item4;
                 Console.WriteLine($"{bulbasaur.Item1} attackerar och gör {bulbasaur.Item4} skada!");
 
