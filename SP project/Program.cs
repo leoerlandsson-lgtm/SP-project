@@ -6,18 +6,17 @@ namespace SP_project
     {
         static void Main(string[] args)
         {
-            
-            Pokemon pikachu = new Pokemon("Pikachu", 40, 10);
-            Pokemon bulbasaur = new Pokemon("Bulbasaur", 45, 8);
+            // Vi skapar två enkla Tuples: (Namn, HP, MaxHP, Attack)
+            var pikachu = ("Pikachu", 40, 40, 10);
+            var bulbasaur = ("Bulbasaur", 45, 45, 8);
 
             Console.WriteLine("Striden börjar! En vild Bulbasaur dyker upp!");
             Console.WriteLine("------------------------------------------\n");
 
-            
-            while (pikachu.HP > 0 && bulbasaur.HP > 0)
+            while (pikachu.Item2 > 0 && bulbasaur.Item2 > 0)
             {
-                
-                Console.WriteLine($"--- {pikachu.Name}s tur ({pikachu.HP} HP kvar) ---");
+                // --- SPELARENS TUR ---
+                Console.WriteLine($"--- {pikachu.Item1}s tur ({pikachu.Item2} HP kvar) ---");
                 Console.WriteLine("Vad vill du göra?");
                 Console.WriteLine("1. Attackera");
                 Console.WriteLine("2. Använd Heal Potion (+15 HP)");
@@ -28,40 +27,38 @@ namespace SP_project
 
                 if (val == "1")
                 {
-                    pikachu.AttackTarget(bulbasaur);
+                    // Bulbasaur tar skada: Minska HP (Item2) med Pikachus attack (Item4)
+                    bulbasaur.Item2 -= pikachu.Item4;
+                    Console.WriteLine($"{pikachu.Item1} attackerar och gör {pikachu.Item4} skada!");
                 }
                 else if (val == "2")
                 {
-                    pikachu.Heal();
+                    // Pikachu helas, men får inte gå över MaxHP (Item3)
+                    pikachu.Item2 += 15;
+                    if (pikachu.Item2 > pikachu.Item3) pikachu.Item2 = pikachu.Item3;
+                    Console.WriteLine($"{pikachu.Item1} använde en Heal Potion!");
                 }
                 else
                 {
-                    
-                    Console.WriteLine("Du tvekade och missade din chans att agera!");
+                    Console.WriteLine("Du tvekade och missade din chans!");
                 }
 
-                
-                if (bulbasaur.HP <= 0)
+                if (bulbasaur.Item2 <= 0)
                 {
-                    Console.WriteLine($"\n{bulbasaur.Name} svimmade! {pikachu.Name} vann striden!");
-                    break; 
+                    Console.WriteLine($"\n{bulbasaur.Item1} svimmade! {pikachu.Item1} vann!");
+                    break;
                 }
 
-                
-                Console.WriteLine("\nTryck på valfri tangent för datorns tur...");
-                Console.ReadKey();
-                Console.Clear(); 
+                // --- DATORNS TUR ---
+                Console.WriteLine($"\n--- {bulbasaur.Item1}s tur ({bulbasaur.Item2} HP kvar) ---");
 
-               
-                Console.WriteLine($"--- {bulbasaur.Name}s tur ({bulbasaur.HP} HP kvar) ---");
+                // Pikachu tar skada från Bulbasaurs attack
+                pikachu.Item2 -= bulbasaur.Item4;
+                Console.WriteLine($"{bulbasaur.Item1} attackerar och gör {bulbasaur.Item4} skada!");
 
-                
-                bulbasaur.AttackTarget(pikachu);
-
-                
-                if (pikachu.HP <= 0)
+                if (pikachu.Item2 <= 0)
                 {
-                    Console.WriteLine($"\n{pikachu.Name} svimmade! {bulbasaur.Name} vann striden!");
+                    Console.WriteLine($"\n{pikachu.Item1} svimmade! {bulbasaur.Item1} vann!");
                     break;
                 }
 
@@ -74,52 +71,5 @@ namespace SP_project
             Console.ReadLine();
         }
     }
+} 
 
-    public class Pokemon
-    {
-       
-        public string Name { get; set; }
-        public int HP { get; set; }
-        public int MaxHP { get; set; } 
-        public int Attack { get; set; }
-
-        
-        public Pokemon(string name, int hp, int attack)
-        {
-            Name = name;
-            HP = hp;
-            MaxHP = hp; 
-            Attack = attack;
-        }
-
-        
-        public void AttackTarget(Pokemon target)
-        {
-            Console.WriteLine($"{this.Name} attackerar {target.Name}!");
-            target.HP -= this.Attack;
-
-            
-            if (target.HP < 0)
-            {
-                target.HP = 0;
-            }
-
-            Console.WriteLine($"{target.Name} tog {this.Attack} skada och har nu {target.HP} HP kvar.");
-        }
-
-       
-        public void Heal()
-        {
-            int healAmount = 15;
-            this.HP += healAmount;
-
-            
-            if (this.HP > this.MaxHP)
-            {
-                this.HP = this.MaxHP;
-            }
-
-            Console.WriteLine($"{this.Name} drack en Potion och helade sig till {this.HP} HP!");
-        }
-    }
-}
