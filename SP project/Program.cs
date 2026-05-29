@@ -10,17 +10,17 @@ namespace SP_project
             var pikachu = ("Pikachu", 40, 40, 10);
             var bulbasaur = ("Bulbasaur", 45, 45, 8);
 
-            Console.WriteLine("Striden börjar! En vild Bulbasaur dyker upp!");
+            Console.WriteLine("A wild Bulbasaur appeared!");
             Console.WriteLine("------------------------------------------\n");
 
             while (pikachu.Item2 > 0 && bulbasaur.Item2 > 0)
             {
              
-                Console.WriteLine($"--- {pikachu.Item1}s tur ({pikachu.Item2} HP kvar) ---");
-                Console.WriteLine("Vad vill du göra?");
-                Console.WriteLine("1. Attackera");
-                Console.WriteLine("2. Använd Heal Potion (+15 HP)");
-                Console.Write("Gör ditt val (1-2): ");
+                Console.WriteLine($"--- {pikachu.Item1}s turn ({pikachu.Item2} HP left) ---");
+                Console.WriteLine("What do you want to do?");
+                Console.WriteLine("1. Attack");
+                Console.WriteLine("2. Use Heal Potion (+15 HP)");
+                Console.Write("Choose your next move: ");
 
                 string val = Console.ReadLine();
                 Console.WriteLine();
@@ -29,45 +29,45 @@ namespace SP_project
                 {
                     
                     bulbasaur.Item2 -= pikachu.Item4;
-                    Console.WriteLine($"{pikachu.Item1} attackerar och gör {pikachu.Item4} skada!");
+                    Console.WriteLine($"{pikachu.Item1} attacks and makes {pikachu.Item4} hurt!");
                 }
                 else if (val == "2")
                 {
                     
                     pikachu.Item2 += 15;
                     if (pikachu.Item2 > pikachu.Item3) pikachu.Item2 = pikachu.Item3;
-                    Console.WriteLine($"{pikachu.Item1} använde en Heal Potion!");
+                    Console.WriteLine($"{pikachu.Item1} used a Heal Potion!");
                 }
                 else
                 {
-                    Console.WriteLine("Du tvekade och missade din chans!");
+                    Console.WriteLine("You hesitated and missed!");
                 }
 
                 if (bulbasaur.Item2 <= 0)
                 {
-                    Console.WriteLine($"\n{bulbasaur.Item1} svimmade! {pikachu.Item1} vann!");
+                    Console.WriteLine($"\n{bulbasaur.Item1} fainted! {pikachu.Item1} won!");
                     break;
                 }
 
                
-                Console.WriteLine($"\n--- {bulbasaur.Item1}s tur ({bulbasaur.Item2} HP kvar) ---");
+                Console.WriteLine($"\n--- {bulbasaur.Item1}s turn ({bulbasaur.Item2} HP left) ---");
 
                 
                 pikachu.Item2 -= bulbasaur.Item4;
-                Console.WriteLine($"{bulbasaur.Item1} attackerar och gör {bulbasaur.Item4} skada!");
+                Console.WriteLine($"{bulbasaur.Item1} attacks and makes {bulbasaur.Item4} hurt!");
 
                 if (pikachu.Item2 <= 0)
                 {
-                    Console.WriteLine($"\n{pikachu.Item1} svimmade! {bulbasaur.Item1} vann!");
+                    Console.WriteLine($"\n{pikachu.Item1} fainted! {bulbasaur.Item1} won!");
                     break;
                 }
 
-                Console.WriteLine("\nTryck på valfri tangent för nästa runda...");
+                Console.WriteLine("\nPress anything to continue...");
                 Console.ReadKey();
                 Console.Clear();
             }
 
-            Console.WriteLine("\nStriden är slut! Tack för att du spelade.");
+            Console.WriteLine("\nYou won the battle!.");
             Console.ReadLine();
         }
     }
